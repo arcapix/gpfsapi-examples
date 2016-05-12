@@ -1,4 +1,4 @@
-[![Analytics](https://ga-beacon.appspot.com/UA-68292403-4/readme)](https://github.com/igrigorik/ga-beacon?pixel)
+# Google Analytics Beacon test [![Analytics](https://ga-beacon.appspot.com//UA-68292403-4/ga-beacon/readme?pixel&useReferer)](https://github.com/igrigorik/ga-beacon)
 
 
 # gpfsapi-examples
