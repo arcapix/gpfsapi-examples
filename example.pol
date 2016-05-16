@@ -1,0 +1,6 @@
+RULE 'list-tmp' LIST 'tmpfiles'
+  SHOW(' name=' || VARCHAR(NAME) || ' size=' || VARCHAR(KB_ALLOCATED))
+  WEIGHT(KB_ALLOCATED)
+
+RULE 'del-tmp' DELETE
+  WHERE NAME LIKE '%.tmp'
