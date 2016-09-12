@@ -1,4 +1,4 @@
-from arcapix.fs.gpfs import Cluster, IndependentFileset
+from arcapix.fs.gpfs import Cluster
 
 threshold_pct = 80  # watermark for inode increasing
 incr_pct = 20  # increase by pct

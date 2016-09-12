@@ -1,5 +1,7 @@
-from arcapix.fs.gpfs.filesystem import Filesystem, IndependentFileset
 import sys
+from arcapix.fs.gpfs.filesystem import Filesystem, IndependentFileset
+from arcapix.fs.gpfs import GPFSExecuteException
+
 
 soft_quota_pct = threshold_pct  # the per-fileset SoftQuota inode threshold, sensibly the same as the threshold_pct
 hard_quota_pct = 95  # the per-fileset HardQuota inode threshold.

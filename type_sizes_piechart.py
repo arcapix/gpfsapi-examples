@@ -1,6 +1,7 @@
-from arcapix.fs.gpfs import ManagementPolicy, ListProcessingRule
 import matplotlib.pyplot as plt
 from collections import Counter
+from os.path import splitext
+from arcapix.fs.gpfs import ManagementPolicy, ListProcessingRule
 
 
 def type_sizes(file_list):
