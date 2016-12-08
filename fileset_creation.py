@@ -80,7 +80,7 @@ parser.add_option("-a", "--preallocate",
 
 #Check all the options have been specified and exit if any have not
 if not options.filesystem:
-    print "Command failed: filesyetem must be specified to continue"
+    print "Command failed: filesystem must be specified to continue"
     exit()
 elif not options.pool:
     print "Command failed: pool must be specified to continue"

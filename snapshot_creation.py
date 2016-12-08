@@ -90,7 +90,7 @@ parser.add_option("-f", "--fileset",
 sender = 'root@apstore.foo.bar'
 receivers = ['example@example.com'] 
 
-#Lets initiate a cluster and a filesyetem object
+#Lets initiate a cluster and a filesystem object
 mycluster = Cluster('democluster')
 filesys = mycluster.filesystems[filesystemName]
 
