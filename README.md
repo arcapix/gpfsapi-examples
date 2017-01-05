@@ -25,6 +25,8 @@ fileset_creation.py		        - A wrapper for the mmcrfileset command that shows 
 
 find_all_xattrs.py              - List all extended attributes of the files on the filesystem
 
+find_duplicate_files.py         - List groups of files which contain the same data
+
 increase_inodes_callback.py	    - Increasing the inodes for an Independent Fileset via 
 									softQuotaExceeded triggering a serialised Callback
 
