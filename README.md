@@ -8,51 +8,56 @@ If you wish to contribute an example, please submit a pull request.
 
 ## Contents
 ```
-basic_snapdiff.py		        - Find file creations and deletions between two snapshots
+basic_snapdiff.py                 - Find file creations and deletions between two snapshots
 
-create_cache_fileset.py		    - Create AFM (cache) Filesets using NFS or GPFS protocol
+change_threshold_migration.py     - Change the Placement Policy threshold migration for a given Pool
 
-create_samba_snapshot.py	    - Create snapshots of all Independent Filesets using 
-									SAMBA VSS shadow_copy2 compliant names
+create_cache_fileset.py           - Create AFM (cache) Filesets using NFS or GPFS protocol
 
-delete_snapshots.py             - Delete all fast pool Independent Fileset snapshots that 
-									have 'testarcapixexample' in their name
+create_samba_snapshot.py          - Create snapshots of all Independent Filesets using 
+                                    SAMBA VSS shadow_copy2 compliant names
 
-files_by_modification.py        - Build a list of all files on the filesystem, sorted by modification
+delete_by_file_access_name.py     - Delete files matching a name not accessed in N days
 
-fileset_creation.py		        - A wrapper for the mmcrfileset command that shows how to 
-									work with Filesets in the API
+delete_snapshots.py               - Delete all fast pool Independent Fileset snapshots that 
+                                    have 'testarcapixexample' in their name
 
-find_all_xattrs.py              - List all extended attributes of the files on the filesystem
+edit_management_policy.py         - Load and modify an existing Management Policy from a .pol file
 
-find_duplicate_files.py         - List groups of files which contain the same data
+file_heat_mapreduce.py            - Processing FILE_HEAT via MapReduceRule
 
-increase_inodes_callback.py	    - Increasing the inodes for an Independent Fileset via 
-									softQuotaExceeded triggering a serialised Callback
+files_by_modification.py          - Build a list of all files on the filesystem, sorted by modification
 
-increase_inodes.py		        - Increasing the inodes for an Independent Fileset via basic rules
+fileset_creation.py               - A wrapper for the mmcrfileset command that shows how to 
+                                    work with Filesets in the API
 
-Project_creation.py		        - Creates a project consisting of a multiple Filesets within a Fileset
-									(Independent or Dependent) utilising a config file
+find_all_xattrs.py                - List all extended attributes of the files on the filesystem
 
-project_creation_templates.ini	- Config file for Project_creation.py
+find_duplicate_files.py           - List groups of files which contain the same data
 
-Readme.md			            - This file
+increase_inodes_callback.py       - Increasing the inodes for an Independent Fileset via 
+                                    softQuotaExceeded triggering a serialised Callback
 
-snapshot_creation.py		    - A Snapshot creation tool that allows you to create a Snapshot of all 
-									Independent Filesets in a Pool and sends an email notification 
-									of Snapshots created
+increase_inodes.py                - Increasing the inodes for an Independent Fileset via basic rules
 
-temp_file_size.py		        - Find the disk space used by temporary files using List Processing
+Project_creation.py               - Creates a project consisting of a multiple Filesets within a Fileset
+                                    (Independent or Dependent) utilising a config file
 
-type_sizes_piechart.py		    - Plot a pie chart of disk space used by different file types using 
-									List Processing and matplotlib
+project_creation_templates.ini    - Config file for Project_creation.py
 
-edit_management_policy.py       - Load and modify an existing Management Policy from a .pol file
+Readme.md                         - This file
 
-example.pol                     - An example Policy file for the 'edit_management_policy.py' script
+snapshot_creation.py              - A Snapshot creation tool that allows you to create a Snapshot of all 
+                                    Independent Filesets in a Pool and sends an email notification 
+                                    of Snapshots created
 
-edit_placement_policy.py        - Load and modify a Filesystem's running Placement Policy
+temp_file_size.py                 - Find the disk space used by temporary files using List Processing
 
-change_threshold_migration.py   - Change the Placement Policy threshold migration for a given Pool
+type_sizes_piechart.py            - Plot a pie chart of disk space used by different file types using 
+                                    List Processing and matplotlib
+
+example.pol                       - An example Policy file for the 'edit_management_policy.py' script
+
+edit_placement_policy.py          - Load and modify a Filesystem's running Placement Policy
+
 ```
