@@ -22,7 +22,7 @@ delete_by_file_access_name.py     - Delete files matching a name not accessed in
 delete_snapshots.py               - Delete all fast pool Independent Fileset snapshots that 
                                     have 'testarcapixexample' in their name
 
-directory_size.py				  - Use policy summary parsing to get the size of a directory
+directory_size.py                 - Use policy summary parsing to get the size of a directory
 
 edit_management_policy.py         - Load and modify an existing Management Policy from a .pol file
 
@@ -53,12 +53,12 @@ project_creation_templates.ini    - Config file for Project_creation.py
 
 Readme.md                         - This file
 
-size_histogram					  - Build a histogram of file sizes and print the result in tabular form
-									If matplotlib is available, a plot can also be generated.
+size_histogram.py                 - Build a histogram of file sizes and print the result in tabular form
+                                    If matplotlib is available, a plot can also be generated.
 
-snapshot_creation.py		      - A Snapshot creation tool that allows you to create a Snapshot of all 
-									Independent Filesets in a Pool and sends an email notification 
-									of Snapshots created
+snapshot_creation.py              - A Snapshot creation tool that allows you to create a Snapshot of all 
+                                    Independent Filesets in a Pool and sends an email notification 
+                                    of Snapshots created
 
 temp_file_size.py                 - Find the disk space used by temporary files using List Processing
 
