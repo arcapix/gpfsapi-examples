@@ -17,6 +17,8 @@ create_samba_snapshot.py	    - Create snapshots of all Independent Filesets usin
 
 delete_snapshots.py             - Delete all fast pool Independent Fileset snapshots that 
 									have 'testarcapixexample' in their name
+									
+directory_size.py				- Use policy summary parsing to get the size of a directory
 
 files_by_modification.py        - Build a list of all files on the filesystem, sorted by modification
 
@@ -38,6 +40,9 @@ Project_creation.py		        - Creates a project consisting of a multiple Filese
 project_creation_templates.ini	- Config file for Project_creation.py
 
 Readme.md			            - This file
+
+size_histogram					- Build a histogram of file sizes and print the result in tabular form
+									If matplotlib is available, a plot can also be generated.
 
 snapshot_creation.py		    - A Snapshot creation tool that allows you to create a Snapshot of all 
 									Independent Filesets in a Pool and sends an email notification 
