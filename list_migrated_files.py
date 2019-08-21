@@ -1,14 +1,15 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 
-import os
 import sys
-from argparse import ArgumentParser, RawDescriptionHelpFormatter
+from argparse import ArgumentParser
 
 from arcapix.fs.gpfs import ManagementPolicy, ListProcessingRule, Criteria
+
 
 def print_file_paths(file_list):
     for f in file_list:
         print f.pathname
+
 
 def list_migrated_files(topdir):
 
@@ -21,45 +22,25 @@ def list_migrated_files(topdir):
     # Ensure files are grouped by directory
     r.change(sort='DIRECTORY_HASH')
 
-    # Show the full path of matched files
+    # Match read-managed files
     r.criteria.new(Criteria.like('MISC_ATTRIBUTES', '%V%'))
 
     # Run the policy
     p.run(topdir)
 
-### main
 
 def main(argv=None):
 
-    if argv is None:
-        argv = sys.argv
-    else:
-        sys.argv.extend(argv)
-
-    program_name = os.path.basename(sys.argv[0])
-    program_shortdesc = "list migrated files"
-    program_desc = '%s\n\nUSAGE' % (program_shortdesc)
-
     # Setup argument parser
-    parser = ArgumentParser(
-        description=program_desc,
-        formatter_class=RawDescriptionHelpFormatter)
-    
-    parser.add_argument(
-        'path', nargs=1,
-        help='the path within which to identify migrated files')
+    parser = ArgumentParser(description="list migrated files")
+    parser.add_argument('path', help='the path within which to identify migrated files')
 
     # Process arguments
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     # Locate the files
-    list_migrated_files(args.path[0])    
+    list_migrated_files(args.path)
 
-    return 0
 
 if __name__ == "__main__":
     sys.exit(main())
-
-
-# EOF
-

@@ -20,10 +20,10 @@ from arcapix.fs.gpfs.rule import ListRule
 def fileset_size(filesystem, fileset, nodes='all'):
 
     policy = ManagementPolicy()
-    
+
     # create generic list rule
     rule = policy.rules.new(ListRule, 'fileset_size')
-    
+
     # match all files and directories in the given fileset
     rule.change(fileset=fileset, directories_plus=True)
 

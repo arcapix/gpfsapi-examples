@@ -1,7 +1,13 @@
-import sys
-from arcapix.fs.gpfs.filesystem import Filesystem, IndependentFileset
-from arcapix.fs.gpfs import GPFSExecuteException
+from __future__ import print_function
 
+import sys
+
+from arcapix.fs.gpfs import GPFSExecuteException
+from arcapix.fs.gpfs.filesystem import Filesystem
+from arcapix.fs.gpfs.fileset import IndependentFileset
+
+threshold_pct = 80  # watermark for inode increasing
+incr_pct = 20  # increase by pct
 
 soft_quota_pct = threshold_pct  # the per-fileset SoftQuota inode threshold, sensibly the same as the threshold_pct
 hard_quota_pct = 95  # the per-fileset HardQuota inode threshold.
@@ -38,20 +44,28 @@ def increase_max_inodes(fsName, filesetName):
                 pass  # alert here via your method of choice
 
 
-if isinstance(fset, IndependentFileset):
+if __name__ == '__main__':
 
-    # Set an initial Quota
-    soft = int(fset.maxInodes * soft_quota_pct/100.)
-    hard = int(fset.maxInodes * hard_quota_pct/100.)
+    fsName = sys.argv[1]
+    filesetName = sys.argv[2]
 
-    fset.quotas.fileset.new(filesSoftLimit=soft, filesHardLimit=hard)
+    filesys = Filesystem(fsName)
+    fset = filesys.filesets[filesetName]
 
-    # Set the Callback on the Fileset
-    fset.onSoftQuotaExceeded.new(callbackId='increase_max_inodes-%s' % fset.name, command=increase_max_inodes)
+    if isinstance(fset, IndependentFileset):
 
-else:
-    print 'Auto-increases via quota triggers can only be set on Independent Filesets.'
-    sys.exit(1)
+        # Set an initial Quota
+        soft = int(fset.maxInodes * soft_quota_pct / 100.)
+        hard = int(fset.maxInodes * hard_quota_pct / 100.)
 
-# Exit nicely
-sys.exit(0)
+        fset.quotas.fileset.new(filesSoftLimit=soft, filesHardLimit=hard)
+
+        # Set the Callback on the Fileset
+        fset.onSoftQuotaExceeded.new(callbackId='increase_max_inodes-%s' % fset.name, command=increase_max_inodes)
+
+    else:
+        print('Auto-increases via quota triggers can only be set on Independent Filesets.')
+        sys.exit(1)
+
+    # Exit nicely
+    sys.exit(0)

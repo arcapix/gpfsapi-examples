@@ -12,6 +12,7 @@ Caveats:
 - Files that can't be read for whatever reason (e.g. permission denied) will be skipped
 """
 
+from __future__ import print_function
 import hashlib
 
 from arcapix.fs.gpfs import ManagementPolicy, MapReduceRule
@@ -29,18 +30,20 @@ def md5sum(filename, blocksize=65536):
         return None
     return hash.hexdigest()
 
+
 # build dict of format: (hash, [list, of, paths])
 def reducefn(x, y):
-    for k, v in y.iteritems():
+    for k, v in y.items():
         if k is None:
             # couldn't md5sum file -> skip
             continue
-        x.setdefault(k, []).extend(v) 
+        x.setdefault(k, []).extend(v)
     return x
+
 
 # yield lists containing duplicates
 def output(out):
-    for v in out.itervalues():
+    for v in out.items():
         if len(v) > 1:
             yield v
 
@@ -61,11 +64,11 @@ res = p.run('mmfs1')['duplicates']
 
 # print formatted results
 for item in res:
-    print ", ".join(item), '\n'
-    
+    print(", ".join(item), '\n')
+
 
 # $ python find_duplicate_files.py
-#/mmfs1/.policytmp/pdtest-b81839f8-13909.A590830A.0, /mmfs1/.policytmp/pdtest-7a781e4a-13909.A590830A.0.out 
+#/mmfs1/.policytmp/pdtest-b81839f8-13909.A590830A.0, /mmfs1/.policytmp/pdtest-7a781e4a-13909.A590830A.0.out
 #
 #/mmfs1/.policytmp/apsync.list.d70aac39.0, /mmfs1/.policytmp/apsync.list.bfeb0b4e.0
 #

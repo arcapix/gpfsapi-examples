@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 from arcapix.fs.gpfs import ManagementPolicy, MapReduceRule
 
 
@@ -22,6 +24,6 @@ created = sorted(i[0] for i in (out_new - out_old))
 unchanged = sorted(i[0] for i in (out_old & out_new))
 
 # Print results
-print "Created:", ", ".join(created)
-print "Deleted:", ", ".join(deleted)
-print "Unchanged:", ", ".join(unchanged)
+print("Created:", ", ".join(created))
+print("Deleted:", ", ".join(deleted))
+print("Unchanged:", ", ".join(unchanged))

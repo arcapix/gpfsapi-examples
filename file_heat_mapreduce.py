@@ -8,6 +8,7 @@ Once the show clause has been defined, the specified properties can be
 accessed by list processing in the usual way.
 """
 
+from __future__ import print_function
 from arcapix.fs.gpfs import ManagementPolicy, MapReduceRule
 
 # create management policy
@@ -20,4 +21,4 @@ r = p.rules.new(MapReduceRule, 'heat', lambda x: [(x.path, x.fileheat)])
 r.change(show="'path=' || varchar(PATH_NAME) || ' fileheat=' || varchar(FILE_HEAT)")
 
 # execute rule and print result
-print p.run('mmfs1')['heat']
+print(p.run('mmfs1')['heat'])

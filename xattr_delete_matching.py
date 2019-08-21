@@ -13,7 +13,7 @@ r.change(directories_plus=True)
 
 # match file with given xattr
 # if a file doesn't have the particular xattr, its value will be NULL
-r.criteria.new("xattr('user.projectstate.archivedEXAMPLE') IS NOT NULL"))
+r.criteria.new("xattr('user.projectstate.archivedEXAMPLE') IS NOT NULL")
 
 # execute delete rule
 p.run('mmfs1')

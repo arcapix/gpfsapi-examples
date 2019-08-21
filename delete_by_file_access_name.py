@@ -3,8 +3,9 @@
 This example will delete '.ptc' type files, which haven't been accessed in over 90 days, owned by user 'prman'
 """
 
-from arcapix.fs.gpfs import ManagementPolicy, DeleteRule, Criteria
 from pwd import getpwnam
+
+from arcapix.fs.gpfs import Criteria, DeleteRule, ManagementPolicy
 
 # create management policy
 p = ManagementPolicy()

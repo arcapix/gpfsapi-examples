@@ -36,13 +36,16 @@ Options:
 Example:
     projectCreate -f mmfs1 -p nas -n testerScript -d /mmfs1/data -m 2024 -a 1024
 '''
-from optparse import OptionParser
-import re
-#Imports for Arcapix API use
-from arcapix.fs.gpfs import IndependentFileset
-import uuid
+from __future__ import print_function
 
-#Create and configure the parser object to allow us to take user input for the fileset options
+import re
+import uuid
+from optparse import OptionParser
+
+# Imports for Arcapix API use
+from arcapix.fs.gpfs import IndependentFileset
+
+# Create and configure the parser object to allow us to take user input for the fileset options
 parser = OptionParser()
 
 parser.add_option("-f", "--filesystem",
@@ -78,40 +81,40 @@ parser.add_option("-a", "--preallocate",
 
 (options, args) = parser.parse_args()
 
-#Check all the options have been specified and exit if any have not
+# Check all the options have been specified and exit if any have not
 if not options.filesystem:
-    print "Command failed: filesystem must be specified to continue"
+    print("Command failed: filesystem must be specified to continue")
     exit()
 elif not options.pool:
-    print "Command failed: pool must be specified to continue"
+    print("Command failed: pool must be specified to continue")
     exit()
 elif not options.name:
-    print "Command failed: name must be specified to continue"
+    print("Command failed: name must be specified to continue")
     exit()
 elif not options.path:
-    print "Command failed: path must be specified to continue"
+    print("Command failed: path must be specified to continue")
     exit()
 elif not options.maxInodes:
-    print "Command failed: maxInodes must be specified to continue"
+    print("Command failed: maxInodes must be specified to continue")
     exit()
 elif not options.preallocate:
-    print "Command failed: preallocate must be specified to continue"
+    print("Command failed: preallocate must be specified to continue")
     exit()
 
-#Now we know that all the options exist
-#let's get the inode user input into a  variable and ensure they are the correct type - error and exit if not
+# Now we know that all the options exist
+# let's get the inode user input into a  variable and ensure they are the correct type - error and exit if not
 try:
     maxInodesOpts = int(options.maxInodes)
 except:
-    print "Command failed: maxInodes is of incorrect type"
+    print("Command failed: maxInodes is of incorrect type")
     exit()
 try:
     preallocatedOpts = int(options.preallocate)
     if preallocatedOpts > maxInodesOpts:
-        print "command Failed: You can not preallocate more inodes than the maximum allocation"
+        print("command Failed: You can not preallocate more inodes than the maximum allocation")
         exit()
 except:
-    print "Command failed: preallocated is of incorrect type"
+    print("Command failed: preallocated is of incorrect type")
     exit()
 
 '''
@@ -120,28 +123,21 @@ then create that on the GPFS filesystem. we can then link that fileset using
 the given path.
 '''
 
-#We need to make an ID for the fileset 
+# We need to make an ID for the fileset
 uid = uuid.uuid4()
 
 
 filesystem = options.filesystem
 
-#The filesetName needs to be called pool-projectName for GPFS policy to then place the file in the right pool
+# The filesetName needs to be called pool-projectName for GPFS policy to then place the file in the right pool
 filesetName = options.pool + '-' + options.name
 
-#remove any trailing / from the user input (if any) then add the link to the fileset name to the path
+# remove any trailing / from the user input (if any) then add the link to the fileset name to the path
 linkAddress = re.sub("^/|/$", "", options.path) + '/' + options.name
 
-#Create the fileset object using the user defined options
+# Create the fileset object using the user defined options
 myfileset = IndependentFileset(filesystem, filesetName, uid, maxInodes=maxInodesOpts, allocInodes=preallocatedOpts)
-#Create the fileset on GPFS
+# Create the fileset on GPFS
 myfileset.create()
-#link the fileset
+# link the fileset
 myfileset.link(linkAddress)
-
-
-
-
-
-
-

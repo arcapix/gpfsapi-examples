@@ -1,7 +1,9 @@
-import matplotlib.pyplot as plt
 from collections import Counter
 from os.path import splitext
-from arcapix.fs.gpfs import ManagementPolicy, ListProcessingRule
+
+import matplotlib.pyplot as plt
+
+from arcapix.fs.gpfs import ListProcessingRule, ManagementPolicy
 
 
 def type_sizes(file_list):
@@ -18,6 +20,6 @@ r = p.rules.new(ListProcessingRule, 'types', type_sizes)
 
 result = p.run('mmfs1')['types']
 
-plt.pie(result.values(), labels=result.keys(), autopct='%1.1f%%')
+plt.pie(list(result.values()), labels=list(result.keys()), autopct='%1.1f%%')
 plt.axis('equal')
 plt.show()

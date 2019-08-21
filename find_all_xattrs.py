@@ -1,12 +1,16 @@
+from __future__ import print_function
+
 import operator
+
 from arcapix.fs.gpfs import ManagementPolicy, MapReduceRule
 
 # create a policy object
 p = ManagementPolicy()
 
+
 # define a map function
-# returns a set of any file xattr names
 def mapfn(f):
+    # returns a set of any file xattr names
     try:
         return set(f.xattrs.split())
     except AttributeError:
@@ -21,7 +25,7 @@ r = p.rules.new(MapReduceRule, 'xattrset', mapfn, operator.ior)
 r.change(show="('xattrs=' || GetXattrs('*', 'key'))")
 
 # run the policy
-print p.run('mmfs1')['xattrset']
+print(p.run('mmfs1')['xattrset'])
 
 # prints a set of unique file xattr names, e.g.
 # {'gpfs.CLONE', 'user.foo', 'user.owner'}

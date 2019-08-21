@@ -5,6 +5,8 @@ Returns a list of file paths and whether the xattr was sucessfully set (TRUE/FAL
 e.g. [('/mmfs1/somedir/test.txt', 'TRUE'), ...]
 """
 
+from __future__ import print_function
+
 from arcapix.fs.gpfs import ManagementPolicy, MapReduceRule
 
 # create management policy
@@ -21,5 +23,4 @@ r.change(show="'path=' || varchar(PATH_NAME) || ' xattrset=' || varchar(setxattr
 r.criteria.new(r.criteria.like('path', '/mmfs1/somedir/*'))
 
 # execute rule and print result
-print p.run('mmfs1')['xattrs']
-
+print(p.run('mmfs1')['xattrs'])
