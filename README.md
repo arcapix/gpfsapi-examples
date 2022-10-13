@@ -13,6 +13,8 @@ basic_snapdiff.py                 - Find file creations and deletions between tw
 
 change_threshold_migration.py     - Change the Placement Policy threshold migration for a given Pool
 
+clib_tree_walk.py                 - Basic example of using clib to walk a directory tree and stat discovered objects
+
 create_cache_fileset.py           - Create AFM (cache) Filesets using NFS or GPFS protocol
 
 create_samba_snapshot.py          - Create snapshots of all Independent Filesets using
@@ -49,7 +51,11 @@ increase_inodes_callback.py       - Increasing the inodes for an Independent Fil
 
 increase_inodes.py                - Increasing the inodes for an Independent Fileset via basic rules
 
+inode_scan.py                     - Perform an inode scan to collect file metadata, using CLib
+
 list_migrated_files.py            - List of files which are migrated (read-managed)
+
+list_processing_file_sizes.py     - List processing rule to scan a directory tree and write file paths and sizes to a file.
 
 project_creation.py               - Creates a project consisting of a multiple Filesets within a Fileset
                                     (Independent or Dependent) utilising a config file
